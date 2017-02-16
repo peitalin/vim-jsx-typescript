@@ -1,17 +1,39 @@
 vim-jsx-typescript
 =======
-There is no indentation bundled with this library, so install with your bundler of choice with:
+
+## Installation
+
+You can also add vim-jsx using [Vundle] or junegunn/vim-plug---just add the following lines to
+your `~/.vimrc`:
+
+### Vundle:
+
+```
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+```
+
+### Vim-plug:
 
 ```
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+```
 
+To install from within vim, use the commands below.
+```
+    :so ~/.vimrc
+    :PluginInstall
+
+```
+
+You will also need to set .tsx files as filetype=typescript.jsx, since leafgarland/typescript-vim
+sets .tsx files as "typescript".
+
+```
 " set filetypes as typescript.jsx
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
 ```
-
-You need to set .tsx files as filetype=typescript.jsx, since leafgarland/typescript-vim
-sets .tsx fiels as "typescript".
 
 Note you can include .jsx and .js files as typescript.jsx files for syntax highlighting.
 
@@ -40,5 +62,6 @@ hi htmlTag guifg=#2974a1
 hi htmlEndTag guifg=#2974a1
 hi htmlTagName guifg=#2974a1
 ```
+
 
 
