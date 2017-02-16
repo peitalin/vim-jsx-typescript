@@ -5,7 +5,14 @@ There is no indentation bundled with this library, so use:
 ```
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+
+" set .tsx files as typescript.tsx filetype
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 ```
+
+You need to set filetype, since leafgarland/typescript-vim sets
+.ts and .tsx files as filetype: 'typescript'.
+
 ![alt tag](./screenshot.jpg)
 
 

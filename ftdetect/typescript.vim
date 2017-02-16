@@ -1,11 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim ftdetect file
-"
-" Language: JSX (JavaScript)
-" Maintainer: Max Wang <mxawng@gmail.com>
-"
+" Language: JSX (Typescript)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Whether the .jsx extension is required.
 if !exists('g:jsx_ext_required')
   let g:jsx_ext_required = 1
@@ -34,3 +30,6 @@ autocmd BufNewFile,BufRead *.jsx let b:jsx_ext_found = 1
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 autocmd BufNewFile,BufRead *.js
   \ if <SID>EnableJSX() | set filetype=javascript.jsx | endif
+
+autocmd BufNewFile,BufRead *.tsx let b:jsx_ext_found = 1
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
