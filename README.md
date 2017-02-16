@@ -1,7 +1,7 @@
 vim-jsx-typescript
 =======
 
-Syntax highlighting and indenting for JSX in Typescript.
+Syntax highlighting for JSX in Typescript.
 
 vim-jsx-typescript is _not_ a JavaScript syntax package, so in order to use it, you will
 also need to choose a base JS highlighter. [leafgarland/typescript-vim][1] is the
