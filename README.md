@@ -20,7 +20,7 @@ your `~/.vimrc`:
 
 ```
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'peitalin/vim-jsx-typescript'
 ```
 
 ### Vim-plug:
