@@ -36,7 +36,7 @@ syntax region jsxRegion
       \ end=+</\z1\_\s\{-}[^(=>)]>+
       \ end=+>\n*\t*\n*\s*)\@=+
       \ end=+>\n*\t*\n*\s*\(}\n*\t*\s*[a-zA-Z()]\)\@=+
-      \ end=+>;\=\(\n*\t*\s*[a-zA-Z()]\)\@=+
+      \ end=+>;\(\n*\t*\s*[a-zA-Z()]\)\@=+
       \ end=+\n\?\s\*,+
       \ end=+\s*,\@=+
       \ end=+\s\+:\@=+
