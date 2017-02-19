@@ -38,7 +38,6 @@ syntax region jsxRegion
       \ end=+>\n*\t*\n*\s*\(}\n*\t*\s*[a-zA-Z()]\)\@=+
       \ end=+>;\(\n*\t*\s*[a-zA-Z()]\)\@=+
       \ end=+\n\?\s\*,+
-      \ end=+\s*,\@=+
       \ end=+\s\+:\@=+
       \ fold
       \ contains=jsBlock,jsxTag,jsxCloseTag,jsxComment,Comment,@Spell
