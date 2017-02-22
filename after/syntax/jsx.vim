@@ -35,6 +35,7 @@ syntax region jsxRegion
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
       \ end=+>\n*\t*\n*\s*)\@=+
+      \ end=+>\n*\t*\n*\s*,\@=+
       \ end=+>\n*\t*\n*\s*\(}\n*\t*\s*[a-zA-Z()]\)\@=+
       \ end=+>;\(\n*\t*\s*[a-zA-Z()]\)\@=+
       \ end=+\n\?\s\*,+
