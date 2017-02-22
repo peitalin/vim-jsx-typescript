@@ -47,7 +47,7 @@ syntax region jsxRegion
 
 
 " matches template strings in jsx `this is a ${string}`
-syn region xmlString contained start=+\({[ ]*\zs`[0-9a-zA-Z/:.#!@% ?-_=+]*\|}\zs[0-9a-zA-Z/:.#!@% ?-_+=]*`\)+ end=++ contains=jsBlock,javascriptBlock
+" syn region xmlString contained start=+\({[ ]*\zs`[0-9a-zA-Z/:.#!@% ?-_=+]*\|}\zs[0-9a-zA-Z/:.#!@% ?-_+=]*`\)+ end=++ contains=jsBlock,javascriptBlock
 
 " matches jsx Comments: {/* .....  /*}
 syn region Comment contained start=+{/\*+ end=+\*/}+ contains=Comment
@@ -106,6 +106,9 @@ syntax match jsxEqual +=+ contained display
 " <tag id="sample">
 "         s~~~~~~e
 syntax region jsxString contained start=+"+ end=+"+ contains=jsxEntity,@Spell display
+
+" <tag id=`sample${var}`>
+syntax region jsxString contained start=+`+ end=+`+ contains=jsxEntity,@Spell display
 
 " <tag id='sample'>
 "         s~~~~~~e
