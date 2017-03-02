@@ -9,6 +9,7 @@ recommended package.
 
 
 ![alt tag](./screenshot.jpg)
+![alt tag](./screenshot2.png)
 
 
 ## Installation
@@ -34,6 +35,9 @@ To install from within vim, use the commands below.
 ```
     :so ~/.vimrc
     :PluginInstall
+
+OR for vim-plug:
+    :PlugInstall
 
 ```
 
