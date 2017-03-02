@@ -8,10 +8,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " These are the plugin-to-syntax-element correspondences:
-"
-"   - pangloss/vim-javascript:      jsBlock, jsExpression
-"   - jelera/vim-javascript-syntax: javascriptBlock
-"   - othree/yajs.vim:              javascriptNoReserved
+"   - leafgarland/typescript-vim:             typescriptFuncBlock
 
 
 let s:jsx_cpo = &cpo
@@ -31,19 +28,21 @@ endif
 "  <tag></tag>
 " s~~~~~~~~~~~e
 syntax region jsxRegion
-      \ start=+\%(<\|\w\)\@<!<\z([a-zA-Z][a-zA-Z0-9:\-.]*\)+
+      \ start=+\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)+
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
       \ end=+>\n*\t*\n*\s*)\@=+
       \ end=+>\n*\t*\n*\s*,\@=+
-      \ end=+>\n*\t*\n*\s*\(}\n*\t*\s*[a-zA-Z()/]\)\@=+
+      \ end=+>\n*\t*\n*\s*\(}\n*\t*\s*[a-zA-Z()\t/]\)\@=+
+      \ end=+>\n*\t*\n*\s*\({\n*\t*\s*[a-zA-Z()\t/]\)\@=+
       \ end=+>;\(\n*\t*\s*[a-zA-Z()]\)\@=+
       \ end=+\n\?\s\*,+
       \ end=+\s\+:\@=+
       \ fold
-      \ contains=jsBlock,jsxTag,jsxCloseTag,jsxComment,Comment,@Spell
+      \ contains=jsxTag,jsxCloseTag,jsxComment,Comment,@Spell,typescriptFuncBlock
       \ keepend
       \ extend
+
 
 
 " matches template strings in jsx `this is a ${string}`
