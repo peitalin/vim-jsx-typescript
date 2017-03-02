@@ -60,7 +60,10 @@ syntax region jsxTag
       \ start=+<[^ }/!?<>"'=:]\@=+
       \ end=+\/\?>+
       \ contained
-      \ contains=jsxTagName,jsxAttrib,jsxEqual,jsxString,jsxEscapeJs
+      \ contains=jsxTagName,jsxAttrib,jsxEqual,jsxString,jsxEscapeJs,jsxAttributeComment
+
+syn region jsxAttributeComment contained start=+//+ end=+\n+ contains=Comment
+  \ extend
 
 " </tag>
 " ~~~~~~
@@ -142,6 +145,7 @@ highlight def link jsxEscapeJs jsxEscapeJs
 
 highlight def link jsxCloseString htmlTagName
 highlight def link jsxAttributeBraces htmlTag
+highlight def link jsxAttributeComment Comment
 
 let b:current_syntax = 'javascript.jsx'
 
