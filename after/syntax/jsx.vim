@@ -147,6 +147,18 @@ highlight def link jsxCloseString htmlTagName
 highlight def link jsxAttributeBraces htmlTag
 highlight def link jsxAttributeComment Comment
 
+
+" Custom React Highlights
+syn keyword ReactKeywords state props defaultProps ownProps
+" Then EITHER (define your own colour scheme):
+hi ReactKeywords ctermfg=204 guifg=#E06C75
+" OR (make the colour scheme match an existing one):
+" hi link ReactKeywords typescriptRComponent
+
+syn keyword ReactLifeCycleMethods componentWillMount shouldComponentUpdate componentWillUpdate componentDidUpdate componentWillReceiveProps componentWillUnmount componentDidMount
+hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
+
+
 let b:current_syntax = 'javascript.jsx'
 
 let &cpo = s:jsx_cpo
