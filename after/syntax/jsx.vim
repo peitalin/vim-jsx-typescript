@@ -155,6 +155,9 @@ hi ReactKeywords ctermfg=204 guifg=#E06C75
 " OR (make the colour scheme match an existing one):
 " hi link ReactKeywords typescriptRComponent
 
+syn keyword ReduxKeywords dispatch payload
+hi ReduxKeywords ctermfg=204 guifg=#C678DD
+
 syn keyword ReactLifeCycleMethods componentWillMount shouldComponentUpdate componentWillUpdate componentDidUpdate componentWillReceiveProps componentWillUnmount componentDidMount
 hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
