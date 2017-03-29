@@ -149,13 +149,18 @@ highlight def link jsxAttributeComment Comment
 
 
 " Custom React Highlights
-syn keyword ReactKeywords state props defaultProps ownProps nextState nextProps
+syn keyword ReactState state nextState prevState
 " Then EITHER (define your own colour scheme):
-hi ReactKeywords ctermfg=204 guifg=#E06C75
+hi ReactState guifg=#E06C75
 " OR (make the colour scheme match an existing one):
 " hi link ReactKeywords typescriptRComponent
+
+syn keyword ReactProps props defaultProps ownProps nextProps prevProps
+hi ReactProps guifg=#D19A66
+
 syn keyword Events e event
 hi Events ctermfg=204 guifg=#56B6C2
+
 
 syn keyword ReduxKeywords dispatch payload
 hi ReduxKeywords ctermfg=204 guifg=#C678DD
