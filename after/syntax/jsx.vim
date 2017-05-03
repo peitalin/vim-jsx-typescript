@@ -149,7 +149,7 @@ highlight def link jsxAttributeComment Comment
 
 
 " Custom React Highlights
-syn keyword ReactState state nextState prevState
+syn keyword ReactState state nextState prevState setState
 " Then EITHER (define your own colour scheme):
 hi ReactState guifg=#E06C75
 " OR (make the colour scheme match an existing one):
