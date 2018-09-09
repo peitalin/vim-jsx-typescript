@@ -40,10 +40,10 @@ OR for vim-plug:
 
 ```
 
-Note you can include .jsx and .js files as typescript.jsx files for syntax highlighting.
+Note you can include .jsx files as typescript.tsx files for syntax highlighting.
 ```
-" set filetypes as typescript.jsx
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+" set filetypes as typescript.tsx
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 ```
 
 
