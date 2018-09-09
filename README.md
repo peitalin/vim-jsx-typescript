@@ -8,8 +8,8 @@ also need to choose a base JS highlighter. [leafgarland/typescript-vim][1] is th
 recommended package.
 
 
-![alt tag](./screenshot.jpg)
-![alt tag](./screenshot2.png)
+![alt tag](./screen1.jpg)
+![alt tag](./screen2.jpg)
 
 
 ## Installation
@@ -60,3 +60,4 @@ hi xmlEndTag guifg=#2974a1
 
 
 
+![alt tag](./screen3.jpg)
