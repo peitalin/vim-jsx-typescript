@@ -3,9 +3,7 @@ vim-jsx-typescript
 
 Syntax highlighting for JSX in Typescript.
 
-vim-jsx-typescript is _not_ a JavaScript syntax package, so in order to use it, you will
-also need to choose a base JS highlighter. `leafgarland/typescript-vim`[1] is the
-recommended package.
+`vim-jsx-typescript` works with a typescript syntax highlighter for TSX highlighting. The recommended TypeScript syntax highlighter is `leafgarland/typescript-vim`[1].
 
 
 ![alt tag](./screen1.jpg)
