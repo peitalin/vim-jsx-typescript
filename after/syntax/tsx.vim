@@ -2,8 +2,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim syntax file
 "
-" Language: JSX (JavaScript)
-" https://github.com/neoclide/vim-jsx-improve/blob/master/after/syntax/javascript.vim
+" Language: TSX (TypeScript)
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -11,7 +10,7 @@
 "   - leafgarland/typescript-vim:             typescriptFuncBlock
 
 
-let s:jsx_cpo = &cpo
+let s:tsx_cpo = &cpo
 set cpo&vim
 
 syntax case match
@@ -28,7 +27,7 @@ endif
 
 "  <tag></tag>
 " s~~~~~~~~~~~e
-syntax region jsxRegion
+syntax region tsxRegion
       \ start=+\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)+
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
@@ -40,86 +39,86 @@ syntax region jsxRegion
       \ end=+\n\?\s\*,+
       \ end=+\s\+:\@=+
       \ fold
-      \ contains=jsxTag,jsxCloseTag,jsxComment,Comment,@Spell,typescriptFuncBlock
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock
       \ keepend
       \ extend
 
 
 
-" matches template strings in jsx `this is a ${string}`
+" matches template strings in tsx `this is a ${string}`
 " syn region xmlString contained start=+\({[ ]*\zs`[0-9a-zA-Z/:.#!@% ?-_=+]*\|}\zs[0-9a-zA-Z/:.#!@% ?-_+=]*`\)+ end=++ contains=jsBlock,javascriptBlock
 
-" matches jsx Comments: {/* .....  /*}
+" matches tsx Comments: {/* .....  /*}
 syn region Comment contained start=+{/\*+ end=+\*/}+ contains=Comment
   \ extend
 
 
 " <tag id="sample">
 " s~~~~~~~~~~~~~~~e
-syntax region jsxTag
-      \ matchgroup=jsxCloseTag
+syntax region tsxTag
+      \ matchgroup=tsxCloseTag
       \ start=+<[^ }/!?<>"'=:]\@=+
       \ end=+\/\?>+
       \ contained
-      \ contains=jsxTagName,jsxAttrib,jsxEqual,jsxString,jsxEscapeJs,jsxAttributeComment
+      \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxEscapeJs,tsxAttributeComment
 
-syn region jsxAttributeComment contained start=+//+ end=+\n+ contains=Comment
+syn region tsxAttributeComment contained start=+//+ end=+\n+ contains=Comment
   \ extend
 
 " </tag>
 " ~~~~~~
-syntax region jsxCloseTag
+syntax region tsxCloseTag
       \ start=+</[^ /!?<>"'=:]\@=+
       \ end=+>+
       \ contained
-      \ contains=jsxCloseString
+      \ contains=tsxCloseString
 
-syntax match jsxCloseString
+syntax match tsxCloseString
     \ +\w\++
     \ contained
 
 " <!-- -->
 " ~~~~~~~~
-syntax match jsxComment /<!--\_.\{-}-->/ display
+syntax match tsxComment /<!--\_.\{-}-->/ display
 
-syntax match jsxEntity "&[^; \t]*;" contains=jsxEntityPunct
-syntax match jsxEntityPunct contained "[&.;]"
+syntax match tsxEntity "&[^; \t]*;" contains=tsxEntityPunct
+syntax match tsxEntityPunct contained "[&.;]"
 
 " <tag key={this.props.key}>
 "  ~~~
-syntax match jsxTagName
+syntax match tsxTagName
     \ +[<]\@<=[^ /!?<>"']\++
     \ contained
     \ display
 
 " <tag key={this.props.key}>
 "      ~~~
-syntax match jsxAttrib
+syntax match tsxAttrib
     \ +[-'"<]\@<!\<[a-zA-Z:_][-.0-9a-zA-Z0-9:_]*\>\(['">]\@!\|$\)+
     \ contained
-    \ contains=jsxAttribPunct,jsxAttribHook
+    \ contains=tsxAttribPunct,tsxAttribHook
     \ display
 
-syntax match jsxAttribPunct +[:.]+ contained display
+syntax match tsxAttribPunct +[:.]+ contained display
 
 " <tag id="sample">
 "        ~
-syntax match jsxEqual +=+ contained display
+syntax match tsxEqual +=+ contained display
 
 " <tag id="sample">
 "         s~~~~~~e
-syntax region jsxString contained start=+"+ end=+"+ contains=jsxEntity,@Spell display
+syntax region tsxString contained start=+"+ end=+"+ contains=tsxEntity,@Spell display
 
 " <tag id=`sample${var}`>
-syntax region jsxString contained start=+`+ end=+`+ contains=jsxEntity,@Spell display
+syntax region tsxString contained start=+`+ end=+`+ contains=tsxEntity,@Spell display
 
 " <tag id='sample'>
 "         s~~~~~~e
-syntax region jsxString contained start=+'+ end=+'+ contains=jsxEntity,@Spell display
+syntax region tsxString contained start=+'+ end=+'+ contains=tsxEntity,@Spell display
 
 " <tag key={this.props.key}>
 "          s~~~~~~~~~~~~~~e
-syntax region jsxEscapeJs matchgroup=jsxAttributeBraces
+syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
     \ contained
     \ start=+=\@<={+
     \ end=+}\ze\%(\/\|\n\|\s\|>\)+
@@ -127,26 +126,26 @@ syntax region jsxEscapeJs matchgroup=jsxAttributeBraces
     \ keepend
     \ extend
 
-syntax match jsxIfOperator +?+
-syntax match jsxElseOperator +:+
+syntax match tsxIfOperator +?+
+syntax match tsxElseOperator +:+
 
-syntax cluster jsExpression add=jsxRegion
+syntax cluster jsExpression add=tsxRegion
 
-" highlight def link jsxTagName htmlTagName
-highlight def link jsxTagName xmlTagName
-" highlight def link jsxCloseTag htmlTag
-highlight def link jsxCloseTag xmlEndTag
+" highlight def link tsxTagName htmlTagName
+highlight def link tsxTagName xmlTagName
+" highlight def link tsxCloseTag htmlTag
+highlight def link tsxCloseTag xmlEndTag
 
-highlight def link jsxEqual htmlTag
-highlight def link jsxString String
-highlight def link jsxNameSpace Function
-highlight def link jsxComment Error
-highlight def link jsxAttrib htmlArg
-highlight def link jsxEscapeJs jsxEscapeJs
+highlight def link tsxEqual htmlTag
+highlight def link tsxString String
+highlight def link tsxNameSpace Function
+highlight def link tsxComment Error
+highlight def link tsxAttrib htmlArg
+highlight def link tsxEscapeJs tsxEscapeJs
 
-highlight def link jsxCloseString htmlTagName
-highlight def link jsxAttributeBraces htmlTag
-highlight def link jsxAttributeComment Comment
+highlight def link tsxCloseString htmlTagName
+highlight def link tsxAttributeBraces htmlTag
+highlight def link tsxAttributeComment Comment
 
 
 " Custom React Highlights
@@ -170,8 +169,8 @@ syn keyword ReactLifeCycleMethods componentWillMount shouldComponentUpdate compo
 hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
 
-let b:current_syntax = 'javascript.jsx'
+let b:current_syntax = 'javascript.tsx'
 
-let &cpo = s:jsx_cpo
-unlet s:jsx_cpo
+let &cpo = s:tsx_cpo
+unlet s:tsx_cpo
 

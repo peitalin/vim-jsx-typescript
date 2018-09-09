@@ -1,8 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim ftplugin file
 "
-" Language: JSX (JavaScript)
-" Maintainer: Max Wang <mxawng@gmail.com>
+" Language: TSX (TypeScript)
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -13,4 +12,4 @@ if exists("loaded_matchit")
         \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endif
 
-setlocal suffixesadd+=.jsx
+setlocal suffixesadd+=.tsx

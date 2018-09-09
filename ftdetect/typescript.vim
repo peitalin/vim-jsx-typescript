@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim ftdetect file
-" Language: JSX (Typescript)
+" Language: TSX (Typescript)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Whether the .jsx extension is required.
 if !exists('g:jsx_ext_required')
@@ -26,10 +26,11 @@ fu! <SID>EnableJSX()
   return 1
 endfu
 
-autocmd BufNewFile,BufRead *.jsx let b:jsx_ext_found = 1
-autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-autocmd BufNewFile,BufRead *.js
-  \ if <SID>EnableJSX() | set filetype=javascript.jsx | endif
 
-autocmd BufNewFile,BufRead *.tsx let b:jsx_ext_found = 1
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
+autocmd FileType typescript.tsx setlocal commentstring={/*\ %s\ */}
+autocmd BufNewFile,BufRead *.jsx let b:jsx_ext_found = 1
+autocmd BufNewFile,BufRead *.tsx,*jsx set filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.js
+  \ if <SID>EnableJSX() | set filetype=typescript.jsx | endif
+
+autocmd BufNewFile,BufRead *.jsx let b:jsx_ext_found = 1

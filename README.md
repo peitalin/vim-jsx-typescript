@@ -20,7 +20,6 @@ your `~/.vimrc`:
 ### Vundle:
 
 ```
-Plugin 'pangloss/vim-javascript'
 Plugin 'peitalin/vim-jsx-typescript'
 ```
 
@@ -41,15 +40,12 @@ OR for vim-plug:
 
 ```
 
-You will also need to set .tsx files as filetype=typescript.jsx, since leafgarland/typescript-vim
-sets .tsx files as "typescript".
-
+Note you can include .jsx and .js files as typescript.jsx files for syntax highlighting.
 ```
 " set filetypes as typescript.jsx
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
 ```
 
-Note you can include .jsx and .js files as typescript.jsx files for syntax highlighting.
 
 
 Set jsx-tag colors in vimrc:
