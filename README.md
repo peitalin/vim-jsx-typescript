@@ -4,7 +4,7 @@ vim-jsx-typescript
 Syntax highlighting for JSX in Typescript.
 
 vim-jsx-typescript is _not_ a JavaScript syntax package, so in order to use it, you will
-also need to choose a base JS highlighter. [leafgarland/typescript-vim][1] is the
+also need to choose a base JS highlighter. `leafgarland/typescript-vim`[1] is the
 recommended package.
 
 
@@ -14,12 +14,13 @@ recommended package.
 
 ## Installation
 
-You can also add vim-jsx using [Vundle] or junegunn/vim-plug---just add the following lines to
+You need to install [Vundle] or [vim-plug]: `https://github.com/junegunn/vim-plug` --- just add the following lines to
 your `~/.vimrc`:
 
 ### Vundle:
 
 ```
+Plugin 'leafgarland/typescript-vim'
 Plugin 'peitalin/vim-jsx-typescript'
 ```
 
@@ -32,11 +33,12 @@ Plug 'peitalin/vim-jsx-typescript'
 
 To install from within vim, use the commands below.
 ```
-    :so ~/.vimrc
-    :PluginInstall
+:so ~/.vimrc
+:PluginInstall
 
-OR for vim-plug:
-    :PlugInstall
+" OR for vim-plug:
+:so ~/.vimrc
+:PlugInstall
 
 ```
 
@@ -47,17 +49,37 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 ```
 
 
-
-Set jsx-tag colors in vimrc:
+Set jsx-tag colors in vimrc, for example:
 ```
-" light blues
-hi xmlTagName guifg=#59ACE5
-hi xmlTag guifg=#59ACE5
+" dark red
+hi tsxTagName guifg=#E06C75
 
-" dark blues
-hi xmlEndTag guifg=#2974a1
+" orange
+hi tsxCloseString guifg=#F99575
+hi tsxCloseTag guifg=#F99575
+hi tsxAttributeBraces guifg=#F99575
+hi tsxEqual guifg=#F99575
+
+" yellow
+hi tsxAttrib guifg=#F8BD7F cterm=italic
 ```
 
+
+![alt tag](./screen4.jpg)
+
+Or use the blue-green [Original] colorscheme
+```
+" light blue
+hi tsxTagName guifg=#59ACE5
+" dark blue
+hi tsxCloseString guifg=#2974a1
+hi tsxCloseTag guifg=#2974a1
+hi tsxAttributeBraces guifg=#2974a1
+hi tsxEqual guifg=#2974a1
+" green
+hi tsxAttrib guifg=#1BD1C1
+
+```
 
 
 ![alt tag](./screen3.jpg)
