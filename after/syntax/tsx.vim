@@ -161,30 +161,15 @@ hi tsxAttrib guifg=#1BD1C1
 " Custom React Highlights
 syn keyword ReactState state nextState prevState setState
 " Then EITHER (define your own colour scheme):
-hi ReactState guifg=#C176A7
 " OR (make the colour scheme match an existing one):
 " hi link ReactKeywords typescriptRComponent
-
 syn keyword ReactProps props defaultProps ownProps nextProps prevProps
-hi ReactProps guifg=#D19A66
-
 syn keyword Events e event target value
-hi Events ctermfg=204 guifg=#56B6C2
-
 syn keyword ReduxKeywords dispatch payload
-hi ReduxKeywords ctermfg=204 guifg=#C678DD
-
-syn keyword Ethereum ether eth web3 Web3 owner msg sender tx
-hi Ethereum ctermfg=204 guifg=#E48565
-
 syn keyword WebBrowser window localStorage
-hi WebBrowser ctermfg=204 guifg=#56B6C2
-
 syn keyword ReactLifeCycleMethods componentWillMount shouldComponentUpdate componentWillUpdate componentDidUpdate componentWillReceiveProps componentWillUnmount componentDidMount
-hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
-
-let b:current_syntax = 'javascript.tsx'
+let b:current_syntax = 'typescript.tsx'
 
 let &cpo = s:tsx_cpo
 unlet s:tsx_cpo

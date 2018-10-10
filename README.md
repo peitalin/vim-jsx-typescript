@@ -83,3 +83,15 @@ hi tsxAttrib guifg=#1BD1C1
 
 
 ![alt tag](./screen3.jpg)
+
+
+Other keywords you can change coloring:
+```
+hi ReactState guifg=#C176A7
+hi ReactProps guifg=#D19A66
+hi Events ctermfg=204 guifg=#56B6C2
+hi ReduxKeywords ctermfg=204 guifg=#C678DD
+hi WebBrowser ctermfg=204 guifg=#56B6C2
+hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
+```
+
