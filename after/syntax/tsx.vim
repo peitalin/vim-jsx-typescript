@@ -43,6 +43,26 @@ syntax region tsxRegion
       \ keepend
       \ extend
 
+" \@<=    positive lookbehind
+" \@<!    negative lookbehind
+" \@=     positive lookahead
+" \@!     negative lookahead
+" \%(<\|\w\)\@<!   ----- negative look-behind: no '<' or 'word' preceding
+" \z( \) ------ an 'atom'
+
+
+" <>   </>
+" s~~~~~~e
+" A big start regexp borrowed from https://git.io/vDyxc
+syntax region tsxFragment
+      \ start=+\(\((\|{\|}\|\[\|,\|&&\|||\|?\|:\|=\|=>\|\Wreturn\|^return\|\Wdefault\|^\|>\)\_s*\)\@<=<>+
+      \ skip=+<!--\_.\{-}-->+
+      \ end=+</>+
+      \ fold
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock,tsxFragment
+      \ keepend
+      \ extend
+
 
 
 " matches template strings in tsx `this is a ${string}`
@@ -118,6 +138,12 @@ syntax region tsxString contained start=+'+ end=+'+ contains=tsxEntity,@Spell di
 
 " <tag key={this.props.key}>
 "          s~~~~~~~~~~~~~~e
+" syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
+"     \ start=+\w\{0,1}[=]\@<={+
+"     \ end=+}\@>\ze\%(\/\|\n\|\s\|>\)+
+"     \ contained
+"     \ contains=TOP
+
 syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
     \ contained
     \ start=+=\@<={+
@@ -125,6 +151,7 @@ syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
     \ contains=TOP
     \ keepend
     \ extend
+
 
 syntax match tsxIfOperator +?+
 syntax match tsxElseOperator +:+
@@ -135,6 +162,7 @@ syntax cluster jsExpression add=tsxRegion
 highlight def link tsxTagName xmlTagName
 " highlight def link tsxCloseTag htmlTag
 highlight def link tsxCloseTag xmlEndTag
+highlight def link tsxFragment xmlEndTag
 
 highlight def link tsxEqual htmlTag
 highlight def link tsxString String
