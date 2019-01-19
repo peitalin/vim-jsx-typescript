@@ -39,7 +39,7 @@ syntax region tsxRegion
       \ end=+\n\?\s\*,+
       \ end=+\s\+:\@=+
       \ fold
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell
       \ keepend
       \ extend
 
@@ -49,20 +49,6 @@ syntax region tsxRegion
 " \@!     negative lookahead
 " \%(<\|\w\)\@<!   ----- negative look-behind: no '<' or 'word' preceding
 " \z( \) ------ an 'atom'
-
-
-" <>   </>
-" s~~~~~~e
-" A big start regexp borrowed from https://git.io/vDyxc
-syntax region tsxFragment
-      \ start=+\(\((\|{\|}\|\[\|,\|&&\|||\|?\|:\|=\|=>\|\Wreturn\|^return\|\Wdefault\|^\|>\)\_s*\)\@<=<>+
-      \ skip=+<!--\_.\{-}-->+
-      \ end=+</>+
-      \ fold
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock,tsxFragment
-      \ keepend
-      \ extend
-
 
 
 " matches template strings in tsx `this is a ${string}`
@@ -96,6 +82,20 @@ syntax region tsxCloseTag
 syntax match tsxCloseString
     \ +\w\++
     \ contained
+
+" <>   </>
+" s~~~~~~e
+" A big start regexp borrowed from https://git.io/vDyxc
+" syntax region tsxFragment
+"       \ start=+\(\((\|{\|}\|\[\|,\|&&\|||\|?\|:\|=\|=>\|\Wreturn\|^return\|\Wdefault\|^\|>\)\_s*\)\@<=<>+
+"       \ skip=+<!--\_.\{-}-->+
+"       \ end=+</>+
+"       \ fold
+"       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock,tsxFragment
+"       \ keepend
+"       \ extend
+
+
 
 " <!-- -->
 " ~~~~~~~~
