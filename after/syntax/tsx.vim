@@ -28,71 +28,54 @@ endif
 "  <tag></tag>
 " s~~~~~~~~~~~e
 syntax region tsxRegion
-      \ start=+\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)+
+      \ start=+\(<>\|\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)\)+
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
-      \ end=+>\n*\s*)\@=+
-      \ end=+>\n*\s*,\@=+
-      \ end=+>\n*\s*\({\n*\s*[a-zA-Z()\t/]\)\@=+
+      \ end=+>\n*\s*[),]\@=+
       \ end=+>[;]*\n*\s*\(}\n*\s*\)\@=+
-      \ matchgroup=tsxFragmentEnd end=+/>+
       \ fold
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon
       \ keepend
       \ extend
+
 
 " \@<=    positive lookbehind
 " \@<!    negative lookbehind
 " \@=     positive lookahead
 " \@!     negative lookahead
-" \%(<\|\w\)\@<!   ----- negative look-behind: no '<' or 'word' preceding
-" \z( \) ------ an 'atom'
 
-" <>   </>
-" s~~~~~~e
-" A big start regexp borrowed from https://git.io/vDyxc
-syntax region tsxFragment
-      \ start=+\(\((\|\[\|,\|&&\|\|^\|>\)\_s*\)\@<=<>+
-      \ skip=+<!--\_.\{-}-->+
-      \ end=+</>+
-      \ matchgroup=tsxFragmentEnd end=+>+
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock
-      \ fold
-      \ keepend
-      \ extend
+" these lines are for ending 'tsxRegion' for nested 'jsBlock'
+      " \ end=+>\n*\s*[),]\@=+
+      " \ end=+>[;]*\n*\s*\(}\n*\s*\)\@=+
 
-syntax region tsxFragmentEnd
-      \ start=+<\@=[/]+
-      \ skip=+<!--\_.\{-}-->+
-      \ end=+[/]\@>=\@=>+
-      \ fold
-      \ keepend
 
-" matches template strings in tsx `this is a ${string}`
-" syn region xmlString contained start=+\({[ ]*\zs`[0-9a-zA-Z/:.#!@% ?-_=+]*\|}\zs[0-9a-zA-Z/:.#!@% ?-_+=]*`\)+ end=++ contains=jsBlock,javascriptBlock
+syn region jsBlock contained start=+{+ end=+}+
+  \ contains=TOP
+  \ extend
+
 
 " matches tsx Comments: {/* .....  /*}
 syn region Comment contained start=+{/\*+ end=+\*/}+ contains=Comment
   \ extend
 
+syn region tsxAttributeComment contained start=+//+ end=+\n+ contains=Comment
+  \ extend
 
 " <tag id="sample">
 " s~~~~~~~~~~~~~~~e
+      " \ start=+<[^ }/!?<>"'=:]\@=+
 syntax region tsxTag
       \ matchgroup=tsxCloseTag
-      \ start=+<[^ }/!?<>"'=:]\@=+
+      \ start=+<[^ }/!?<"'=:]\@=+
       \ end=+\/\?>+
       \ contained
       \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxEscapeJs,tsxAttributeComment
 
-syn region tsxAttributeComment contained start=+//+ end=+\n+ contains=Comment
-  \ extend
-
 " </tag>
 " ~~~~~~
 syntax region tsxCloseTag
-      \ start=+</[^ /!?<>"'=:]\@=+
-      \ end=+>+
+      \ start=+</[^ /!?<"'=:]\@=+
+      \ end=+>[\;]*+
       \ contained
       \ contains=tsxCloseString
 
@@ -100,6 +83,9 @@ syntax match tsxCloseString
     \ +\w\++
     \ contained
 
+syntax match tsxColon
+    \ +[;]+
+    \ contained
 
 " <!-- -->
 " ~~~~~~~~
@@ -142,19 +128,11 @@ syntax region tsxString contained start=+'+ end=+'+ contains=tsxEntity,@Spell di
 
 " <tag key={this.props.key}>
 "          s~~~~~~~~~~~~~~e
-" syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
-"     \ start=+\w\{0,1}[=]\@<={+
-"     \ end=+}\@>\ze\%(\/\|\n\|\s\|>\)+
-"     \ contained
-"     \ contains=TOP
-
 syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
+    \ start=+\w\{0,1}[=]\@<={+
+    \ end=+}\@>\ze\%(\/\|\n\|\s\|>\)+
     \ contained
-    \ start=+=\@<={+
-    \ end=+}\ze\%(\/\|\n\|\s\|>\)+
     \ contains=TOP
-    \ keepend
-    \ extend
 
 
 syntax match tsxIfOperator +?+
@@ -166,8 +144,7 @@ syntax cluster jsExpression add=tsxRegion
 highlight def link tsxTagName xmlTagName
 " highlight def link tsxCloseTag htmlTag
 highlight def link tsxCloseTag xmlEndTag
-highlight def link tsxFragment xmlEndTag
-highlight def link tsxFragmentEnd xmlEndTag
+highlight def link tsxRegionEnd xmlEndTag
 
 highlight def link tsxEqual htmlTag
 highlight def link tsxString String
@@ -180,6 +157,7 @@ highlight def link tsxCloseString htmlTagName
 highlight def link tsxAttributeBraces htmlTag
 highlight def link tsxAttributeComment Comment
 
+highlight def link tsxColon typescriptEndColons
 
 
 
