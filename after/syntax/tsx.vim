@@ -33,15 +33,13 @@ syntax region tsxRegion
       \ end=+</\z1\_\s\{-}[^(=>)]>+
       \ end=+>\n*\t*\n*\s*)\@=+
       \ end=+>\n*\t*\n*\s*,\@=+
-      \ end=+>\n*\t*\n*\s*\(}\n*\t*\s*[a-zA-Z()\t/]\)\@=+
       \ end=+>\n*\t*\n*\s*\({\n*\t*\s*[a-zA-Z()\t/]\)\@=+
       \ end=+>;\(\n*\t*\s*[a-zA-Z()]\)\@=+
-      \ end=+\n\?\s\*,+
-      \ end=+\s\+:\@=+
       \ fold
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock,tsxFragment,tsxFragmentEnd
       \ keepend
       \ extend
+
 
 " \@<=    positive lookbehind
 " \@<!    negative lookbehind
@@ -50,6 +48,25 @@ syntax region tsxRegion
 " \%(<\|\w\)\@<!   ----- negative look-behind: no '<' or 'word' preceding
 " \z( \) ------ an 'atom'
 
+" <>   </>
+" s~~~~~~e
+" A big start regexp borrowed from https://git.io/vDyxc
+syntax region tsxFragment
+      \ start=+\(\((\|{\|}\|\[\|,\|&&\|||\|?\|:\|=\|=>\|\Wreturn\|^return\|\Wdefault\|^\|>\)\_s*\)\@<=<>+
+      \ skip=+<!--\_.\{-}-->+
+      \ end=+</>+
+      \ matchgroup=tsxFragmentEnd end=+>+
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock
+      \ fold
+      \ keepend
+      \ extend
+
+syntax region tsxFragmentEnd
+      \ skip=+<!--\_.\{-}-->+
+      \ start=+</>+
+      \ end=+>+
+      \ fold
+      \ keepend
 
 " matches template strings in tsx `this is a ${string}`
 " syn region xmlString contained start=+\({[ ]*\zs`[0-9a-zA-Z/:.#!@% ?-_=+]*\|}\zs[0-9a-zA-Z/:.#!@% ?-_+=]*`\)+ end=++ contains=jsBlock,javascriptBlock
@@ -82,19 +99,6 @@ syntax region tsxCloseTag
 syntax match tsxCloseString
     \ +\w\++
     \ contained
-
-" <>   </>
-" s~~~~~~e
-" A big start regexp borrowed from https://git.io/vDyxc
-" syntax region tsxFragment
-"       \ start=+\(\((\|{\|}\|\[\|,\|&&\|||\|?\|:\|=\|=>\|\Wreturn\|^return\|\Wdefault\|^\|>\)\_s*\)\@<=<>+
-"       \ skip=+<!--\_.\{-}-->+
-"       \ end=+</>+
-"       \ fold
-"       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock,tsxFragment
-"       \ keepend
-"       \ extend
-
 
 
 " <!-- -->
@@ -163,6 +167,7 @@ highlight def link tsxTagName xmlTagName
 " highlight def link tsxCloseTag htmlTag
 highlight def link tsxCloseTag xmlEndTag
 highlight def link tsxFragment xmlEndTag
+highlight def link tsxFragmentEnd xmlEndTag
 
 highlight def link tsxEqual htmlTag
 highlight def link tsxString String
