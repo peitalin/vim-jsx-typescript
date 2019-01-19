@@ -75,7 +75,7 @@ syntax region tsxTag
 " ~~~~~~
 syntax region tsxCloseTag
       \ start=+</[^ /!?<"'=:]\@=+
-      \ end=+>[\;]*+
+      \ end=+>+
       \ contained
       \ contains=tsxCloseString
 
