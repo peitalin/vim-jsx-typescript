@@ -34,11 +34,10 @@ syntax region tsxRegion
       \ end=+>\n*\s*)\@=+
       \ end=+>\n*\s*,\@=+
       \ end=+>\n*\s*\({\n*\s*[a-zA-Z()\t/]\)\@=+
-      \ end=+>\n*\s*\(}\n*\s*[a-zA-Z()\t/]\)\@=+
-      \ end=+/>[;]*\(\n*\s*[a-zA-Z()]\)\@=+
-      \ matchgroup=tsxFragmentEnd end=+/>[;]*\n*\s*\(}\n*\s*\)\@=+
+      \ end=+>[;]*\n*\s*\(}\n*\s*\)\@=+
+      \ matchgroup=tsxFragmentEnd end=+/>+
       \ fold
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock,tsxFragment,tsxFragmentEnd
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock
       \ keepend
       \ extend
 
@@ -53,7 +52,7 @@ syntax region tsxRegion
 " s~~~~~~e
 " A big start regexp borrowed from https://git.io/vDyxc
 syntax region tsxFragment
-      \ start=+\(\((\|{\|}\|\[\|,\|&&\|||\|?\|:\|=\|=>\|\Wreturn\|^return\|\Wdefault\|^\|>\)\_s*\)\@<=<>+
+      \ start=+\(\((\|\[\|,\|&&\|\|^\|>\)\_s*\)\@<=<>+
       \ skip=+<!--\_.\{-}-->+
       \ end=+</>+
       \ matchgroup=tsxFragmentEnd end=+>+
@@ -63,9 +62,9 @@ syntax region tsxFragment
       \ extend
 
 syntax region tsxFragmentEnd
+      \ start=+<\@=[/]+
       \ skip=+<!--\_.\{-}-->+
-      \ start=+</>+
-      \ end=+>+
+      \ end=+[/]\@>=\@=>+
       \ fold
       \ keepend
 
