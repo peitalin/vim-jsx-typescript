@@ -31,15 +31,16 @@ syntax region tsxRegion
       \ start=+\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)+
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
-      \ end=+>\n*\t*\n*\s*)\@=+
-      \ end=+>\n*\t*\n*\s*,\@=+
-      \ end=+>\n*\t*\n*\s*\({\n*\t*\s*[a-zA-Z()\t/]\)\@=+
-      \ end=+>;\(\n*\t*\s*[a-zA-Z()]\)\@=+
+      \ end=+>\n*\s*)\@=+
+      \ end=+>\n*\s*,\@=+
+      \ end=+>\n*\s*\({\n*\s*[a-zA-Z()\t/]\)\@=+
+      \ end=+>\n*\s*\(}\n*\s*[a-zA-Z()\t/]\)\@=+
+      \ end=+/>[;]*\(\n*\s*[a-zA-Z()]\)\@=+
+      \ matchgroup=tsxFragmentEnd end=+/>[;]*\n*\s*\(}\n*\s*\)\@=+
       \ fold
       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,typescriptFuncBlock,tsxFragment,tsxFragmentEnd
       \ keepend
       \ extend
-
 
 " \@<=    positive lookbehind
 " \@<!    negative lookbehind
