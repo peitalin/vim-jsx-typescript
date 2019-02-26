@@ -129,7 +129,7 @@ syntax region tsxString contained start=+'+ end=+'+ contains=tsxEntity,@Spell di
 " <tag key={this.props.key}>
 "          s~~~~~~~~~~~~~~e
 syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
-    \ start=+\w\{0,1}[=]\@<={+
+    \ start=+\w\{0,1}\([=]\|\s\)\@<={+
     \ end=+}\@>\ze\%(\/\|\n\|\s\|>\)+
     \ contained
     \ contains=TOP
