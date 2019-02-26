@@ -25,6 +25,10 @@ if exists('s:current_syntax')
   let b:current_syntax = s:current_syntax
 endif
 
+
+
+
+
 "  <tag></tag>
 " s~~~~~~~~~~~e
 syntax region tsxRegion
@@ -32,11 +36,18 @@ syntax region tsxRegion
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
       \ end=+>\n*\t*\s*[),]\@=+
-      \ end=+>[;]*\n*\t*\s*\(}\n*\t*\s*\)\@=+
-      \ fold
+      \ end=+>[;]*\n*\t*\s*\([};]\n*\t*\s*\)\@=+
       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon
       \ keepend
-      \ extend
+
+" <tag>{content}</tag>
+"      s~~~~~~~e
+syn region jsBlock start=+{+ end=+}+
+  \ contained
+  \ contains=TOP
+
+" `keepend` and `extend` docs:
+" https://github.com/othree/til/blob/master/vim/syntax-keepend-extend.md
 
 
 " \@<=    positive lookbehind
@@ -49,9 +60,31 @@ syntax region tsxRegion
       " \ end=+>[;]*\n*\s*\(}\n*\s*\)\@=+
 
 
-syn region jsBlock contained start=+{+ end=+}+
-  \ contains=TOP
-  \ extend
+" <tag key={this.props.key}>
+"          s~~~~~~~~~~~~~~e
+syntax region tsxJsBlock
+    \ matchgroup=tsxAttributeBraces start=+\([=]\|\s\)\@<={+
+    \ matchgroup=tsxAttributeBraces end=+}\n*\s*\(\/\|>\)+
+    \ contained
+    \ extend
+    \ contains=TOP
+
+
+" <tag id="sample">
+" s~~~~~~~~~~~~~~~e
+syntax region tsxTag
+      \ start=+<[^ /!?<"'=:]\@=+
+      \ end=+\/\?>+
+      \ contained
+      \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock
+
+" </tag>
+" ~~~~~~
+syntax region tsxCloseTag
+      \ start=+</[^ /!?<"'=:]\@=+
+      \ end=+>+
+      \ contained
+      \ contains=tsxCloseString
 
 
 " matches tsx Comments: {/* .....  /*}
@@ -61,23 +94,9 @@ syn region Comment contained start=+{/\*+ end=+\*/}+ contains=Comment
 syn region tsxAttributeComment contained start=+//+ end=+\n+ contains=Comment
   \ extend
 
-" <tag id="sample">
-" s~~~~~~~~~~~~~~~e
-      " \ start=+<[^ }/!?<>"'=:]\@=+
-syntax region tsxTag
-      \ matchgroup=tsxCloseTag
-      \ start=+<[^ }/!?<"'=:]\@=+
-      \ end=+\/\?>+
-      \ contained
-      \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxEscapeJs,tsxAttributeComment
 
-" </tag>
-" ~~~~~~
-syntax region tsxCloseTag
-      \ start=+</[^ /!?<"'=:]\@=+
-      \ end=+>+
-      \ contained
-      \ contains=tsxCloseString
+
+
 
 syntax match tsxCloseString
     \ +\w\++
@@ -126,23 +145,15 @@ syntax region tsxString contained start=+`+ end=+`+ contains=tsxEntity,@Spell di
 "         s~~~~~~e
 syntax region tsxString contained start=+'+ end=+'+ contains=tsxEntity,@Spell display
 
-" <tag key={this.props.key}>
-"          s~~~~~~~~~~~~~~e
-syntax region tsxEscapeJs matchgroup=tsxAttributeBraces
-    \ start=+\w\{0,1}\([=]\|\s\)\@<={+
-    \ end=+}\@>\ze\%(\/\|\n\|\s\|>\)+
-    \ contained
-    \ contains=TOP
 
 
 syntax match tsxIfOperator +?+
 syntax match tsxElseOperator +:+
 
-syntax cluster jsExpression add=tsxRegion
 
 " highlight def link tsxTagName htmlTagName
 highlight def link tsxTagName xmlTagName
-" highlight def link tsxCloseTag htmlTag
+highlight def link tsxTag htmlTag
 highlight def link tsxCloseTag xmlEndTag
 highlight def link tsxRegionEnd xmlEndTag
 
@@ -151,7 +162,6 @@ highlight def link tsxString String
 highlight def link tsxNameSpace Function
 highlight def link tsxComment Error
 highlight def link tsxAttrib htmlArg
-highlight def link tsxEscapeJs tsxEscapeJs
 
 highlight def link tsxCloseString htmlTagName
 highlight def link tsxAttributeBraces htmlTag
