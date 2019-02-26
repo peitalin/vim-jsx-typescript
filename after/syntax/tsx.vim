@@ -51,12 +51,22 @@ syn region jsBlock start=+{+ end=+}+
   \ contained
   \ contains=TOP
 
+" \@<=    positive lookbehind
+" \@<!    negative lookbehind
+" \@=     positive lookahead
+" \@!     negative lookahead
+" RULE: capture expression, then apply rule AFTER
+" e.g foo\(bar\)\@!
+" match all `foo` which is not followed by `bar`
+" https://jbodah.github.io/blog/2016/11/01/positivenegative-lookaheadlookbehind-vim/
+
 " <tag key={this.props.key}>
 "          s~~~~~~~~~~~~~~e
 syntax region tsxJsBlock
     \ matchgroup=tsxAttributeBraces start=+\([=]\|\s\)\@<={+
-    \ matchgroup=tsxAttributeBraces end=+}+
+    \ matchgroup=tsxAttributeBraces end=+}\(}\|)\)\@!+
     \ contained
+    \ keepend
     \ extend
     \ contains=TOP
 
