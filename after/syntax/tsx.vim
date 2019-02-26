@@ -25,9 +25,14 @@ if exists('s:current_syntax')
   let b:current_syntax = s:current_syntax
 endif
 
+"""""" Vim Syntax Help """"""
+" `keepend` and `extend` docs:
+" https://github.com/othree/til/blob/master/vim/syntax-keepend-extend.md
 
-
-
+" \@<=    positive lookbehind
+" \@<!    negative lookbehind
+" \@=     positive lookahead
+" \@!     negative lookahead
 
 "  <tag></tag>
 " s~~~~~~~~~~~e
@@ -46,29 +51,14 @@ syn region jsBlock start=+{+ end=+}+
   \ contained
   \ contains=TOP
 
-" `keepend` and `extend` docs:
-" https://github.com/othree/til/blob/master/vim/syntax-keepend-extend.md
-
-
-" \@<=    positive lookbehind
-" \@<!    negative lookbehind
-" \@=     positive lookahead
-" \@!     negative lookahead
-
-" these lines are for ending 'tsxRegion' for nested 'jsBlock'
-      " \ end=+>\n*\s*[),]\@=+
-      " \ end=+>[;]*\n*\s*\(}\n*\s*\)\@=+
-
-
 " <tag key={this.props.key}>
 "          s~~~~~~~~~~~~~~e
 syntax region tsxJsBlock
     \ matchgroup=tsxAttributeBraces start=+\([=]\|\s\)\@<={+
-    \ matchgroup=tsxAttributeBraces end=+}\n*\s*\(\/\|>\)+
+    \ matchgroup=tsxAttributeBraces end=+}+
     \ contained
     \ extend
     \ contains=TOP
-
 
 " <tag id="sample">
 " s~~~~~~~~~~~~~~~e
@@ -86,17 +76,12 @@ syntax region tsxCloseTag
       \ contained
       \ contains=tsxCloseString
 
-
 " matches tsx Comments: {/* .....  /*}
 syn region Comment contained start=+{/\*+ end=+\*/}+ contains=Comment
   \ extend
 
 syn region tsxAttributeComment contained start=+//+ end=+\n+ contains=Comment
   \ extend
-
-
-
-
 
 syntax match tsxCloseString
     \ +\w\++
@@ -109,7 +94,6 @@ syntax match tsxColon
 " <!-- -->
 " ~~~~~~~~
 syntax match tsxComment /<!--\_.\{-}-->/ display
-
 syntax match tsxEntity "&[^; \t]*;" contains=tsxEntityPunct
 syntax match tsxEntityPunct contained "[&.;]"
 
@@ -145,32 +129,23 @@ syntax region tsxString contained start=+`+ end=+`+ contains=tsxEntity,@Spell di
 "         s~~~~~~e
 syntax region tsxString contained start=+'+ end=+'+ contains=tsxEntity,@Spell display
 
-
-
 syntax match tsxIfOperator +?+
 syntax match tsxElseOperator +:+
-
 
 " highlight def link tsxTagName htmlTagName
 highlight def link tsxTagName xmlTagName
 highlight def link tsxTag htmlTag
 highlight def link tsxCloseTag xmlEndTag
 highlight def link tsxRegionEnd xmlEndTag
-
 highlight def link tsxEqual htmlTag
 highlight def link tsxString String
 highlight def link tsxNameSpace Function
 highlight def link tsxComment Error
 highlight def link tsxAttrib htmlArg
-
 highlight def link tsxCloseString htmlTagName
 highlight def link tsxAttributeBraces htmlTag
 highlight def link tsxAttributeComment Comment
-
 highlight def link tsxColon typescriptEndColons
-
-
-
 
 " Custom React Highlights
 syn keyword ReactState state nextState prevState setState
