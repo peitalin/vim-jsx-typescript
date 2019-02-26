@@ -31,8 +31,8 @@ syntax region tsxRegion
       \ start=+\(<>\|\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)\)+
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
-      \ end=+>\n*\s*[),]\@=+
-      \ end=+>[;]*\n*\s*\(}\n*\s*\)\@=+
+      \ end=+>\n*\t*\s*[),]\@=+
+      \ end=+>[;]*\n*\t*\s*\(}\n*\t*\s*\)\@=+
       \ fold
       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon
       \ keepend
