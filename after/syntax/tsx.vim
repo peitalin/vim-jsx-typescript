@@ -76,7 +76,16 @@ syntax region tsxTag
       \ start=+<[^ /!?<"'=:]\@=+
       \ end=+\/\?>+
       \ contained
-      \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock
+      \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock,tsxGenerics
+
+syntax region tsxGenerics
+    \ matchgroup=tsxTypeBraces start=+\([a-zA-Z0-9]\)\@<=[<]+
+    \ matchgroup=tsxTypeBraces end=+>+
+    \ contains=tsxTypes,tsxGenerics
+    \ extend
+
+syntax match tsxTypes /[a-zA-Z0-9]/
+    \ contained
 
 " </tag>
 " ~~~~~~
@@ -156,6 +165,10 @@ highlight def link tsxCloseString htmlTagName
 highlight def link tsxAttributeBraces htmlTag
 highlight def link tsxAttributeComment Comment
 highlight def link tsxColon typescriptEndColons
+
+highlight def link tsxGenerics typescriptEndColons
+highlight def link tsxTypeBraces htmlTag
+highlight def link tsxTypes typescriptEndColons
 
 " Custom React Highlights
 syn keyword ReactState state nextState prevState setState
