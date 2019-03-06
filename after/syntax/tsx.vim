@@ -47,9 +47,11 @@ syntax region tsxRegion
 
 " <tag>{content}</tag>
 "      s~~~~~~~e
-syn region jsBlock start=+{+ end=+}+
-  \ contained
-  \ contains=TOP
+syn region jsBlock
+    \ start=+{+
+    \ end=+}+
+    \ contained
+    \ contains=TOP
 
 " \@<=    positive lookbehind
 " \@<!    negative lookbehind
@@ -79,7 +81,7 @@ syntax region tsxTag
       \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock,tsxGenerics
 
 syntax region tsxGenerics
-    \ matchgroup=tsxTypeBraces start=+\([a-zA-Z0-9]\)\@<=[<]+
+    \ matchgroup=tsxTypeBraces start=+\([a-zA-Z0-9]\|[a-zA-Z0-9]\)\@<=\s*[<]+
     \ matchgroup=tsxTypeBraces end=+>+
     \ contains=tsxTypes,tsxGenerics
     \ extend
