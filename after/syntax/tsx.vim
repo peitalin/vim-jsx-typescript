@@ -81,12 +81,12 @@ syntax region tsxTag
       \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock,tsxGenerics
 
 syntax region tsxGenerics
-    \ matchgroup=tsxTypeBraces start=+\([<][-_\.a-zA-Z0-9]*\|[<][-_\.a-zA-Z0-9]*\)\@<=\s*[<]+
+    \ matchgroup=tsxTypeBraces start=+\([<][_\.a-zA-Z0-9]*\|[<][_\.a-zA-Z0-9]*\)\@<=\s*[<]+
     \ matchgroup=tsxTypeBraces end=+>+
     \ contains=tsxTypes,tsxGenerics
     \ extend
 
-syntax match tsxTypes /[a-zA-Z0-9]/
+syntax match tsxTypes /[_\.a-zA-Z0-9]/
     \ contained
 
 " </tag>
