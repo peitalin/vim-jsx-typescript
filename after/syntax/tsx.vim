@@ -48,7 +48,7 @@ syntax region tsxRegion
 " <tag>{content}</tag>
 "      s~~~~~~~e
 syn region jsBlock
-    \ start=+{+
+    \ start=+{\(/\*\)\@!+
     \ end=+}+
     \ contained
     \ contains=TOP
@@ -66,7 +66,7 @@ syn region jsBlock
 "          s~~~~~~~~~~~~~~e
 syntax region tsxJsBlock
     \ matchgroup=tsxAttributeBraces start=+\([=]\|\s\)\@<={+
-    \ matchgroup=tsxAttributeBraces end=+}\(}\|)\)\@!+
+    \ matchgroup=tsxAttributeBraces end=+}\(\s*}\|)\)\@!+
     \ contained
     \ keepend
     \ extend
