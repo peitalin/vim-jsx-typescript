@@ -76,7 +76,7 @@ syntax region tsxJsBlock
 " s~~~~~~~~~~~~~~~e
 syntax region tsxTag
       \ start=+<[^ /!?<"'=:]\@=+
-      \ end=+\/\?>+
+      \ end=+[/]\{0,1}>+
       \ contained
       \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock,tsxGenerics
 
@@ -129,8 +129,9 @@ syntax match tsxTagName
 " <tag key={this.props.key}>
 "      ~~~
 syntax match tsxAttrib
-    \ +[-'"<]\@<!\<[a-zA-Z:_][-.0-9a-zA-Z0-9:_]*\>\(['">]\@!\|$\)+
+    \ +[-'"<]\@<!\<[a-zA-Z:_][-.0-9a-zA-Z0-9:_]*[/]\{0,1}\>\(['"]\@!\|$\)+
     \ contained
+    \ keepend
     \ contains=tsxAttribPunct,tsxAttribHook
     \ display
 
