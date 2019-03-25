@@ -171,6 +171,8 @@ highlight def link tsxAttributeComment Comment
 highlight def link tsxColon typescriptEndColons
 
 highlight def link tsxGenerics typescriptEndColons
+highlight def link tsxIfOperator typescriptEndColons
+highlight def link tsxElseOperator typescriptEndColons
 highlight def link tsxTypeBraces htmlTag
 highlight def link tsxTypes typescriptEndColons
 
