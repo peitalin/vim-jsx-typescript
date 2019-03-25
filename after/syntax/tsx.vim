@@ -42,7 +42,7 @@ syntax region tsxRegion
       \ end=+</\z1\_\s\{-}[^(=>)]>+
       \ end=+>\n*\t*\s*[),]\@=+
       \ end=+>[;]*\n*\t*\s*\([};]\n*\t*\s*\)\@=+
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon,tsxIfOperator,tsxElseOperator
       \ keepend
 
 " <tag>{content}</tag>
