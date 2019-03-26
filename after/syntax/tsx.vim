@@ -40,10 +40,11 @@ syntax region tsxRegion
       \ start=+\(\([a-zA-Z]\)\@<!<>\|\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)\)+
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
-      \ end=+>\n*\t*\s*[),]\@=+
-      \ end=+>[;]*\n*\t*\s*\([};]\n*\t*\s*\)\@=+
+      \ end=+</\z1\_\s\{-}>\s*+
+      \ end=+/>\_.\{-}[);]\@=+
       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon,tsxIfOperator,tsxElseOperator
       \ keepend
+
 
 " <tag>{content}</tag>
 "      s~~~~~~~e
