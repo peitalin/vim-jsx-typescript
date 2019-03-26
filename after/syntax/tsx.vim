@@ -40,7 +40,7 @@ syntax region tsxRegion
       \ start=+\(\([a-zA-Z]\)\@<!<>\|\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)\)+
       \ skip=+<!--\_.\{-}-->+
       \ end=+/>\_.\{-}[});]\@=+
-      \ end=+</[a-zA-Z0-9]\{-}>\s*\n*\s*\n*\s*[}),]\@=+
+      \ end=+</[a-zA-Z0-9]\{-}>\s*\n*\s*\n*\s*[);]\@=+
       \ fold
       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon,tsxIfOperator,tsxElseOperator,
       \ extend
@@ -60,7 +60,7 @@ syn region jsBlock
     \ start=+{\(/\*\)\@!+
     \ end=+}+
     \ contained
-      \ keepend
+    \ extend
     \ contains=TOP
 
 " \@<=    positive lookbehind
@@ -163,6 +163,7 @@ syntax region tsxString contained start=+`+ end=+`+ contains=tsxEntity,@Spell di
 syntax region tsxString contained start=+'+ end=+'+ contains=tsxEntity,@Spell display
 
 syntax match tsxIfOperator +?+
+syntax match tsxNotOperator +!+
 syntax match tsxElseOperator +:+
 
 " highlight def link tsxTagName htmlTagName
@@ -182,6 +183,7 @@ highlight def link tsxColon typescriptEndColons
 
 highlight def link tsxGenerics typescriptEndColons
 highlight def link tsxIfOperator typescriptEndColons
+highlight def link tsxNotOperator typescriptEndColons
 highlight def link tsxElseOperator typescriptEndColons
 highlight def link tsxTypeBraces htmlTag
 highlight def link tsxTypes typescriptEndColons
