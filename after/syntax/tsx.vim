@@ -41,7 +41,7 @@ syntax region tsxRegion
       \ skip=+<!--\_.\{-}-->+
       \ end=+</\z1\_\s\{-}[^(=>)]>+
       \ end=+</\z1\_\s\{-}>\s*+
-      \ end=+/>\_.\{-}[);]\@=+
+      \ end=+/>\_.\{-}[});]\@=+
       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon,tsxIfOperator,tsxElseOperator
       \ keepend
 
