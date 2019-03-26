@@ -39,11 +39,19 @@ endif
 syntax region tsxRegion
       \ start=+\(\([a-zA-Z]\)\@<!<>\|\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)\)+
       \ skip=+<!--\_.\{-}-->+
-      \ end=+</\z1\_\s\{-}[^(=>)]>+
-      \ end=+</\z1\_\s\{-}>\s*+
-      \ end=+/>\_.\{-}[});]\@=+
-      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon,tsxIfOperator,tsxElseOperator
+      \ end=+/>\_.\{-}[);]\@=+
+      \ end=+</[a-zA-Z0-9]\{-}>\s*\n*\s*\n*\s*[}),]\@=+
+      \ fold
+      \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon,tsxIfOperator,tsxElseOperator,
+      \ extend
       \ keepend
+
+" end 1): return <SelfClosingTag/>;
+" end 2): handle </ClosingTag>\s*\n*\s*\n*\s*)
+" \s => spaces/tabs
+" \n => end-of-line => \n only match end of line in the buffer.
+" \s*\n*\s*\n*\s* => handles arbitrary spacing between closing tsxTag </tag>
+" and the ending brace for the scope: `}` or `)`
 
 
 " <tag>{content}</tag>
@@ -52,6 +60,7 @@ syn region jsBlock
     \ start=+{\(/\*\)\@!+
     \ end=+}+
     \ contained
+      \ keepend
     \ contains=TOP
 
 " \@<=    positive lookbehind
