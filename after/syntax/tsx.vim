@@ -39,7 +39,7 @@ endif
 syntax region tsxRegion
       \ start=+\(\([a-zA-Z]\)\@<!<>\|\%(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)\)+
       \ skip=+<!--\_.\{-}-->+
-      \ end=+/>\_.\{-}[});]\@=+
+      \ end=+/>\_.\{-}[});]\{-}+
       \ end=+</[a-zA-Z0-9]\{-}>\s*\n*\s*\n*\s*[);]\@=+
       \ fold
       \ contains=tsxTag,tsxCloseTag,tsxComment,Comment,@Spell,jsBlock,tsxColon,tsxIfOperator,tsxElseOperator,
@@ -57,10 +57,10 @@ syntax region tsxRegion
 " <tag>{content}</tag>
 "      s~~~~~~~e
 syn region jsBlock
-    \ start=+{\(/\*\)\@!+
+    \ start=+{+
     \ end=+}+
     \ contained
-    \ extend
+    \ keepend
     \ contains=TOP
 
 " \@<=    positive lookbehind
