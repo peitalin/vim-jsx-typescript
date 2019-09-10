@@ -37,7 +37,7 @@ endif
 "  <tag></tag>
 " s~~~~~~~~~~~e
 syntax region tsxRegion
-    \ start=+\(\([a-zA-Z]\)\@<!<>\|\(<\|\w\)\@<!<\z([/a-zA-Z][a-zA-Z0-9:\-.]*\)\)+
+    \ start=+\(\([a-zA-Z]\)\@<!<>\|\(<\|\w\|[:,\-.]\)\@<!\z(<[/a-zA-Z][a-zA-Z0-9:\-\.]\(,\)\@!\)\)+
     \ skip=+<!--\_.\{-}-->+
     \ end=+</\_.\{-}>+
     \ end=+[a-zA-Z0-9.]*[/]*>\s*\n*\s*\n*\s*[});,]\@=+
@@ -45,12 +45,21 @@ syntax region tsxRegion
     \ extend
     \ keepend
 
+
+
+" Negative lookbacks for:
+" <> preceeded by [a-zA-Z]
+" <<Tag...
+" [a-zA-Z]<Tag
+
 " end 1): handle </NormalClosingTag>
 " end 2): handle <SelfClosingTags/>\s*\n*\s*\n*\s*)
 " \s => spaces/tabs
 " \n => end-of-line => \n only match end of line in the buffer.
 " \s*\n*\s*\n*\s* => handles arbitrary spacing between closing tsxTag </tag>
 " and the ending brace for the scope: `}` or `)`
+"
+" \z( pattern \) Braces can be used to make a pattern into an atom.
 
 " <tag>{content}</tag>
 "      s~~~~~~~e
@@ -88,7 +97,7 @@ syntax region tsxTag
       \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock,tsxGenerics
 
 syntax region tsxGenerics
-    \ matchgroup=tsxTypeBraces start=+\([<][_\.a-zA-Z0-9]*\|[<][_\.a-zA-Z0-9]*\)\@<=\s*[<]+
+    \ matchgroup=tsxTypeBraces start=+\([<][_\-\.:a-zA-Z0-9]*\|[<][_\-\.:a-zA-Z0-9]*\)\@<=\s*[<]+
     \ matchgroup=tsxTypeBraces end=+>+
     \ contains=tsxTypes,tsxGenerics
     \ contained
@@ -193,6 +202,7 @@ syn keyword ReactState state nextState prevState setState
 syn keyword ReactProps props defaultProps ownProps nextProps prevProps
 syn keyword Events e event target value
 syn keyword ReduxKeywords dispatch payload
+syn keyword ReduxHooksKeywords useState useEffect useMemo useCallback
 syn keyword WebBrowser window localStorage
 syn keyword ReactLifeCycleMethods componentWillMount shouldComponentUpdate componentWillUpdate componentDidUpdate componentWillReceiveProps componentWillUnmount componentDidMount
 
