@@ -75,6 +75,7 @@ hi tsxTypes guifg=#666666
 ```
 
 ![alt tag](./screen5.jpg)
+![alt tag](./screen6.jpg)
 
 Other keywords you can change coloring:
 ```
