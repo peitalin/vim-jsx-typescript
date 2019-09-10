@@ -34,10 +34,16 @@ endif
 " \@=     positive lookahead
 " \@!     negative lookahead
 
+
+"  <T1, T2>
+" s~~~~~~~e
+
+syntax case match
+
 "  <tag></tag>
 " s~~~~~~~~~~~e
 syntax region tsxRegion
-    \ start=+\(\([a-zA-Z]\)\@<!<>\|\(\s\|[(]\)\@<=\z(<[/a-zA-Z][a-zA-Z0-9:\-]*\)\)+
+    \ start=+\(\([a-zA-Z]\)\@<!<>\|\(\s\|[(]\s*\)\@<=\z(<[/a-zA-Z],\@!\([a-zA-Z0-9:\-],\@!\)*\)\)+
     \ skip=+<!--\_.\{-}-->+
     \ end=+</\_.\{-}>+
     \ end=+[a-zA-Z0-9.]*[/]*>\s*\n*\s*\n*\s*[});,]\@=+
@@ -105,6 +111,15 @@ syntax region tsxGenerics
 
 syntax match tsxTypes /[_\.a-zA-Z0-9]/
     \ contained
+
+
+" For Generics outside of tsxRegion
+" Must come after tsxRegion in this file
+syntax region tsGenerics
+    \ start=+<[A-Z0-9]\([A-Z0-9,]\|\s\)*>+
+    \ end=+>+
+    \ contains=tsxTypes,tsxGenerics
+    \ extend
 
 " </tag>
 " ~~~~~~
@@ -188,6 +203,8 @@ highlight def link tsxAttributeComment Comment
 highlight def link tsxColon typescriptEndColons
 
 highlight def link tsxGenerics typescriptEndColons
+highlight def link tsGenerics tsxTypeBraces
+
 highlight def link tsxIfOperator typescriptEndColons
 highlight def link tsxNotOperator typescriptEndColons
 highlight def link tsxElseOperator typescriptEndColons
