@@ -35,8 +35,6 @@ endif
 " \@!     negative lookahead
 
 
-"  <T1, T2>
-" s~~~~~~~e
 
 syntax case match
 
@@ -113,10 +111,12 @@ syntax match tsxTypes /[_\.a-zA-Z0-9]/
     \ contained
 
 
+"  <T1, T2>
+" s~~~~~~~e
 " For Generics outside of tsxRegion
 " Must come after tsxRegion in this file
 syntax region tsGenerics
-    \ start=+<[A-Z0-9]\([A-Z0-9,]\|\s\)*>+
+    \ start=+<[A-Z]\([a-zA-Z0-9,{}\[\]'"`]\|\s\)*>+
     \ end=+>+
     \ contains=tsxTypes,tsxGenerics
     \ extend
