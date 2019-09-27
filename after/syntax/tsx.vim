@@ -110,14 +110,15 @@ syntax region tsxGenerics
 syntax match tsxTypes /[_\.a-zA-Z0-9]/
     \ contained
 
+" \@<!    negative lookbehind
 
 "  <T1, T2>
 " s~~~~~~~e
 " For Generics outside of tsxRegion
 " Must come after tsxRegion in this file
 syntax region tsGenerics
-    \ start=+<[A-Z]\([a-zA-Z0-9,{}\[\]'"`]\|\s\)*>+
-    \ end=+>+
+    \ start=+<\([\[A-Z]\|typeof\)\([a-zA-Z0-9,{}\[\]'"`.=>():]\|\s\)*>+
+    \ end=+\([=]\)\@<!>+
     \ contains=tsxTypes,tsxGenerics
     \ extend
 
