@@ -117,7 +117,7 @@ syntax match tsxTypes /[_\.a-zA-Z0-9]/
 " For Generics outside of tsxRegion
 " Must come after tsxRegion in this file
 syntax region tsGenerics
-    \ start=+<\([\[A-Z]\|typeof\)\([a-zA-Z0-9,{}\[\]'"`.=>():]\|\s\)*>+
+    \ start=+<\([\[A-Z]\|typeof\)\([a-zA-Z0-9,{}\[\]'".=>():]\|\s\)*>\(\s*\n*\s*[()]\|\s*[=]\)+
     \ end=+\([=]\)\@<!>+
     \ contains=tsxTypes,tsxGenerics
     \ extend
