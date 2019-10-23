@@ -3,7 +3,7 @@ vim-jsx-typescript
 
 Syntax highlighting for JSX in Typescript.
 
-`vim-jsx-typescript` works with a typescript syntax highlighter for TSX highlighting. The recommended TypeScript syntax highlighter is `leafgarland/typescript-vim`[1].
+`vim-jsx-typescript` works with a typescript syntax highlighter for TSX highlighting. The recommended TypeScript syntax highlighter is [`leafgarland/typescript-vim`][1].
 
 
 ![alt tag](./screen1.jpg)
@@ -90,3 +90,4 @@ hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 ```
 (Updated for React hooks)
 
+[1]: https://github.com/leafgarland/typescript-vim
