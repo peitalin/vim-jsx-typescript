@@ -98,7 +98,7 @@ syntax region tsxTag
       \ start=+<[^ /!?<"'=:]\@=+
       \ end=+[/]\{0,1}>+
       \ contained
-      \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,jsBlock,tsxGenerics
+      \ contains=tsxTagName,tsxAttrib,tsxEqual,tsxString,tsxJsBlock,tsxAttributeComment,tsxGenerics
 
 syntax region tsxGenerics
     \ matchgroup=tsxTypeBraces start=+\([<][_\-\.:a-zA-Z0-9]*\|[<][_\-\.:a-zA-Z0-9]*\)\@<=\s*[<]+
@@ -127,8 +127,7 @@ syntax region tsGenerics
 syntax region tsxCloseTag
       \ start=+</[^ /!?<"'=:]\@=+
       \ end=+>+
-      \ contained
-      \ contains=tsxCloseString
+
 
 " matches tsx Comments: {/* .....  /*}
 syn region Comment contained start=+{/\*+ end=+\*/}+ contains=Comment
