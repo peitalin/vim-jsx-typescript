@@ -157,6 +157,13 @@ syntax match tsxTagName
     \ contained
     \ display
 
+" </tag>
+"   ~~~
+syntax match tsxCloseTagName
+    \ +[</]\@<=[^ /!?<>"']\++
+    \ containedin=tsxCloseTag
+    \ display
+
 " <tag key={this.props.key}>
 "      ~~~
 syntax match tsxAttrib
