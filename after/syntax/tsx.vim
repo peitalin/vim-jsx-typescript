@@ -198,6 +198,7 @@ syntax match tsxElseOperator +:+
 highlight def link tsxTagName xmlTagName
 highlight def link tsxTag htmlTag
 highlight def link tsxCloseTag xmlEndTag
+highlight def link tsxCloseTagName xmlTagName
 highlight def link tsxRegionEnd xmlEndTag
 highlight def link tsxEqual htmlTag
 highlight def link tsxString String
