@@ -160,6 +160,10 @@ syntax match tsxComponentName
       \ contained
       \ display
 
+syntax match tsxCloseComponentName
+    \ +[</]\?[A-Z][-_$A-Za-z0-9]*\>+
+    \ contained
+    \ display
 
 " <tag key={this.props.key}>
 "  ~~~
@@ -174,6 +178,7 @@ syntax match tsxTagName
 syntax match tsxCloseTagName
     \ +[</]\@<=[^ /!?<>"']\++
     \ containedin=tsxCloseTag
+    \ contains=tsxCloseComponentName
     \ display
 
 " <tag key={this.props.key}>
@@ -209,6 +214,7 @@ syntax match tsxElseOperator +:+
 " highlight def link tsxTagName htmlTagName
 highlight def link tsxTagName xmlTagName
 highlight def link tsxComponentName xmlTagName
+highlight def link tsxCloseComponentName xmlTagName
 highlight def link tsxTag htmlTag
 highlight def link tsxCloseTag xmlEndTag
 highlight def link tsxCloseTagName xmlTagName
