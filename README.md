@@ -52,6 +52,7 @@ Set jsx-tag colors in vimrc, for example:
 " dark red
 hi tsxTagName guifg=#E06C75
 hi tsxComponentName guifg=#E06C75
+hi tsxCloseComponentName guifg=#E06C75
 
 " orange
 hi tsxCloseString guifg=#F99575
