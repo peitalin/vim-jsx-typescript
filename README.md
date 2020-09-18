@@ -42,8 +42,8 @@ To install from within vim, use the commands below.
 
 Note you can include .jsx files as typescript.tsx files for syntax highlighting.
 ```
-" set filetypes as typescript.tsx
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 ```
 
 
