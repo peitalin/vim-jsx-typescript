@@ -1,19 +1,15 @@
-vim-jsx-typescript
-=======
+# vim-jsx-typescript
 
-Syntax highlighting for JSX in Typescript.
+Syntax highlighting and indentation for JSX in Typescript (`typescriptreact` filetypes).
 
-`vim-jsx-typescript` works with a typescript syntax highlighter for TSX highlighting. The recommended TypeScript syntax highlighter is [`leafgarland/typescript-vim`][1].
-
+`vim-jsx-typescript` works with the built-in typescript syntax highlighter and indentation engine for recent versions of Vim/Neovim.
 
 ![alt tag](./screen1.jpg)
 ![alt tag](./screen2.jpg)
 
-
 ## Installation
 
-You need to install [Vundle] or [vim-plug]: `https://github.com/junegunn/vim-plug` --- just add the following lines to
-your `~/.vimrc`:
+You need to install [Vundle] or [vim-plug]: `https://github.com/junegunn/vim-plug` --- just add the following lines to your `~/.vimrc`:
 
 ### Vundle:
 
@@ -30,6 +26,7 @@ Plug 'peitalin/vim-jsx-typescript'
 ```
 
 To install from within vim, use the commands below.
+
 ```
 :so ~/.vimrc
 :PluginInstall
@@ -40,14 +37,15 @@ To install from within vim, use the commands below.
 
 ```
 
-Note you can include .jsx files as typescript.tsx files for syntax highlighting.
-```
-" set filetypes as typescript.tsx
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
-```
+Note you can include .jsx files as typescriptreact files for syntax highlighting.
 
+```
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+```
 
 Set jsx-tag colors in vimrc, for example:
+
 ```
 " dark red
 hi tsxTagName guifg=#E06C75
@@ -65,10 +63,10 @@ hi tsxEqual guifg=#F99575
 hi tsxAttrib guifg=#F8BD7F cterm=italic
 ```
 
-
 ![alt tag](./screen4.jpg)
 
 There is support for JSX Generics (Typescript 2.9). You can set the colors by adding this to your .vimrc settings
+
 ```
 " light-grey
 hi tsxTypeBraces guifg=#999999
@@ -81,6 +79,7 @@ hi tsxTypes guifg=#666666
 ![alt tag](./screen9.jpg)
 
 Other keywords you can change coloring:
+
 ```
 hi ReactState guifg=#C176A7
 hi ReactProps guifg=#D19A66
@@ -91,6 +90,3 @@ hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
 hi WebBrowser ctermfg=204 guifg=#56B6C2
 hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 ```
-(Updated for React hooks)
-
-[1]: https://github.com/leafgarland/typescript-vim

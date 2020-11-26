@@ -250,7 +250,7 @@ syn keyword ReduxHooksKeywords useState useEffect useMemo useCallback
 syn keyword WebBrowser window localStorage
 syn keyword ReactLifeCycleMethods componentWillMount shouldComponentUpdate componentWillUpdate componentDidUpdate componentWillReceiveProps componentWillUnmount componentDidMount
 
-let b:current_syntax = 'typescript.tsx'
+let b:current_syntax = 'typescriptreact'
 
 let &cpo = s:tsx_cpo
 unlet s:tsx_cpo

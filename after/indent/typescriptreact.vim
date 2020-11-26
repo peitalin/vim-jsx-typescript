@@ -1,9 +1,12 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" " Vim indent file
 "
-" Language: TSX (TypeScript)
+" Language: typescriptreact (TypeScript)
 " from:
 " https://github.com/peitalin/vim-jsx-typescript/issues/4#issuecomment-564519091
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+runtime! indent/typescript.vim
+
 let b:did_indent = 1
 
 if !exists('*GetTypescriptIndent') | finish | endif
