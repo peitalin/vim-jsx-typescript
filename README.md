@@ -4,6 +4,13 @@ Syntax highlighting and indentation for JSX in Typescript (`typescriptreact` fil
 
 `vim-jsx-typescript` works with the built-in typescript syntax highlighter and indentation engine for recent versions of Vim/Neovim.
 
+*Changelog: filetypes were updated from typescript.tsx to typescriptreact*
+*Please set filetypes as typescriptreact, not typescript.tsx as in prior versions in your .vimrc if you have any issues*
+```
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+```
+
 ![alt tag](./screen1.jpg)
 ![alt tag](./screen2.jpg)
 
