@@ -37,7 +37,7 @@ function! s:SynEOL(lnum)
 endfunction
 
 function! s:SynAttrJSX(synattr)
-  return a:synattr =~ "^tsx"
+  return a:synattr =~ "^tsx" && a:synattr !=# 'tsxElseOperator'
 endfunction
 
 function! s:SynXMLish(syns)
